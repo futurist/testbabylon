@@ -12,7 +12,7 @@ var code = 'function square(n) { \
   return n * n; \
 }\n var n=2;';
 
-var ast = babylon.parse(code, {sourceType:'module', plugins:['jsx', 'trailingFunctionCommas','objectRestSpread']});
+var ast = babylon.parse(code, {sourceType:'module', plugins:['jsx']});
 
 traverse(ast, {
   enter(path) {
