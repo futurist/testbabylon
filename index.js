@@ -8,13 +8,11 @@ const transProp = require('babel-plugin-transform-member-expression-literals')
 var code = 'function square(n) { \
   typeof window; \
   e.name=234; \
+  var myDivElement = <div className="foo" />; \
   return n * n; \
 }\n var n=2;';
 
-var ast = babylon.parse(code, {sourceType:'module', plugins:['transform-member-expression-literals', 'trailingFunctionCommas','objectRestSpread', "transform-define", {
-    "process.env.NODE_ENV": "production",
-    "typeof window": "object"
-  }]});
+var ast = babylon.parse(code, {sourceType:'module', plugins:['jsx', 'trailingFunctionCommas','objectRestSpread']});
 
 traverse(ast, {
   enter(path) {
@@ -38,7 +36,7 @@ const ast2 = tTest({
   NAME: t.identifier('obj'),
   PROP: t.identifier('var')
 })
-console.log(ast2)
+
 console.log(gen(ast2, null).code)
 
 
